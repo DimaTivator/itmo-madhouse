@@ -1,5 +1,6 @@
 package org.dimativator.itmomadhouse.dto;
 
+import org.dimativator.itmomadhouse.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,5 +14,5 @@ public class RegisteredUserDto {
     private Long id;
     private String login;
     private String token;
-    private RoleDto role;
+    private Role role;
 }

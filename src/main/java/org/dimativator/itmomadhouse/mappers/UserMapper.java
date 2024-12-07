@@ -19,7 +19,7 @@ public class UserMapper {
     public static User toEntity(SignUpDto signUpDto) {
         return User.builder()
                 .login(signUpDto.getLogin())
-                .role(RoleMapper.toEntity(signUpDto.getRole()))
+                .role(signUpDto.getRole())
                 .build();
     }
 
@@ -35,7 +35,7 @@ public class UserMapper {
         return RegisteredUserDto.builder()
                 .id(user.getId())
                 .login(user.getLogin())
-                .role(RoleMapper.toDto(user.getRole()))
+                .role(user.getRole())
                 .build();
     }
 } 

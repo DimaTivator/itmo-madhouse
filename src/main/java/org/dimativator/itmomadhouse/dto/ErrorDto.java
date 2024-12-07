@@ -5,11 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoleDto {
-    private Long id;
-    private String name;
-} 
+@Builder
+@Data
+public class ErrorDto {
+    private String message;
+}
