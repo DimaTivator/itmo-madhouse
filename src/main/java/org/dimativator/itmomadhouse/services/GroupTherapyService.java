@@ -21,4 +21,28 @@ public class GroupTherapyService {
             .map(GroupTherapyMapper::toDto)
             .collect(Collectors.toList());
     }
+
+    public GroupTherapyDto addGroupTherapy(GroupTherapyDto therapyDto) {
+        return GroupTherapyMapper.toDto(
+            groupTherapyRepository.save(
+                GroupTherapyMapper.toEntity(therapyDto)
+            )
+        );
+    }
+
+    public GroupTherapyDto updateById(Long id, GroupTherapyDto therapyDto) {
+        if (!groupTherapyRepository.existsById(id)) {
+            throw new RuntimeException("Group therapy not found with id: " + id);
+        }
+        therapyDto.setId(id);
+        return GroupTherapyMapper.toDto(
+            groupTherapyRepository.save(
+                GroupTherapyMapper.toEntity(therapyDto)
+            )
+        );
+    }
+
+    public void removeById(Long id) {
+        groupTherapyRepository.deleteById(id);
+    }
 }

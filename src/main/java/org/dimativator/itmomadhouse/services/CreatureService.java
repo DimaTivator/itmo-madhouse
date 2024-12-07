@@ -18,4 +18,28 @@ public class CreatureService {
             .map(CreatureMapper::toDto)
             .toList();
     }
+
+    public CreatureDto addCreature(CreatureDto creatureDto) {
+        return CreatureMapper.toDto(
+            creatureRepository.save(
+                CreatureMapper.toEntity(creatureDto)
+            )
+        );
+    }
+
+    public CreatureDto updateById(Long id, CreatureDto creatureDto) {
+        if (!creatureRepository.existsById(id)) {
+            throw new RuntimeException("Creature not found with id: " + id);
+        }
+        creatureDto.setId(id);
+        return CreatureMapper.toDto(
+            creatureRepository.save(
+                CreatureMapper.toEntity(creatureDto)
+            )
+        );
+    }
+
+    public void removeById(Long id) {
+        creatureRepository.deleteById(id);
+    }
 }

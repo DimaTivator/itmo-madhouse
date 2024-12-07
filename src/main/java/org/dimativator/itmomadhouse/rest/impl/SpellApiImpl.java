@@ -17,4 +17,25 @@ public class SpellApiImpl implements SpellApi {
     public ResponseEntity<List<SpellDto>> findAll() {
         return ResponseEntity.ok(spellService.getAllSpells());
     }
+
+    @Override
+    public ResponseEntity<SpellDto> getSpell(Long id) {
+        return ResponseEntity.ok(spellService.getById(id));
+    }
+
+    @Override
+    public ResponseEntity<SpellDto> addSpell(SpellDto spellDto) {
+        return ResponseEntity.ok(spellService.addSpell(spellDto));
+    }
+
+    @Override
+    public ResponseEntity<SpellDto> updateSpell(Long id, SpellDto spellDto) {
+        return ResponseEntity.ok(spellService.updateById(id, spellDto));
+    }
+
+    @Override
+    public ResponseEntity<Void> removeSpell(Long id) {
+        spellService.removeById(id);
+        return ResponseEntity.ok().build();
+    }
 } 

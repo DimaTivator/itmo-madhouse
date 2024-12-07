@@ -17,4 +17,35 @@ public class PatientGroupService {
             .map(PatientGroupMapper::toDto)
             .toList();
     }
+
+    public PatientGroupDto addPatientGroup(PatientGroupDto groupDto) {
+        return PatientGroupMapper.toDto(
+            patientGroupRepository.save(
+                PatientGroupMapper.toEntity(groupDto)
+            )
+        );
+    }
+
+    public PatientGroupDto updateById(Long id, PatientGroupDto groupDto) {
+        if (!patientGroupRepository.existsById(id)) {
+            throw new RuntimeException("Patient group not found with id: " + id);
+        }
+        groupDto.setId(id);
+        return PatientGroupMapper.toDto(
+            patientGroupRepository.save(
+                PatientGroupMapper.toEntity(groupDto)
+            )
+        );
+    }
+
+    public void removeById(Long id) {
+        patientGroupRepository.deleteById(id);
+    }
+
+    public PatientGroupDto getById(Long id) {
+        return PatientGroupMapper.toDto(
+            patientGroupRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Patient group not found with id: " + id))
+        );
+    }
 } 

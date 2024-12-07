@@ -17,4 +17,35 @@ public class SpellService {
             .map(SpellMapper::toDto)
             .toList();
     }
+
+    public SpellDto addSpell(SpellDto spellDto) {
+        return SpellMapper.toDto(
+            spellRepository.save(
+                SpellMapper.toEntity(spellDto)
+            )
+        );
+    }
+
+    public SpellDto updateById(Long id, SpellDto spellDto) {
+        if (!spellRepository.existsById(id)) {
+            throw new RuntimeException("Spell not found with id: " + id);
+        }
+        spellDto.setId(id);
+        return SpellMapper.toDto(
+            spellRepository.save(
+                SpellMapper.toEntity(spellDto)
+            )
+        );
+    }
+
+    public void removeById(Long id) {
+        spellRepository.deleteById(id);
+    }
+
+    public SpellDto getById(Long id) {
+        return SpellMapper.toDto(
+            spellRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Spell not found with id: " + id))
+        );
+    }
 } 

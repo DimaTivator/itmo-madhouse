@@ -18,4 +18,20 @@ public class ArtifactApiImpl implements ArtifactApi {
     public ResponseEntity<List<ArtifactDto>> findAll() {
         return ResponseEntity.ok(artifactService.getAllArtifacts());
     }
+
+    @Override
+    public ResponseEntity<ArtifactDto> addArtifact(ArtifactDto artifactDto) {
+        return ResponseEntity.ok(artifactService.addArtifact(artifactDto));
+    }
+
+    @Override
+    public ResponseEntity<ArtifactDto> updateArtifact(Long id, ArtifactDto artifactDto) {
+        return ResponseEntity.ok(artifactService.updateById(id, artifactDto));
+    }
+
+    @Override
+    public ResponseEntity<Void> removeArtifact(Long id) {
+        artifactService.removeById(id);
+        return ResponseEntity.ok().build();
+    }
 } 

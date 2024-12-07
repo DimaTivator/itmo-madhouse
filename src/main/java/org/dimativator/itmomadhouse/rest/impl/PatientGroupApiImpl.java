@@ -17,4 +17,25 @@ public class PatientGroupApiImpl implements PatientGroupApi {
     public ResponseEntity<List<PatientGroupDto>> findAll() {
         return ResponseEntity.ok(patientGroupService.getAllPatientGroups());
     }
+
+    @Override
+    public ResponseEntity<PatientGroupDto> getPatientGroup(Long id) {
+        return ResponseEntity.ok(patientGroupService.getById(id));
+    }
+
+    @Override
+    public ResponseEntity<PatientGroupDto> addPatientGroup(PatientGroupDto groupDto) {
+        return ResponseEntity.ok(patientGroupService.addPatientGroup(groupDto));
+    }
+
+    @Override
+    public ResponseEntity<PatientGroupDto> updatePatientGroup(Long id, PatientGroupDto groupDto) {
+        return ResponseEntity.ok(patientGroupService.updateById(id, groupDto));
+    }
+
+    @Override
+    public ResponseEntity<Void> removePatientGroup(Long id) {
+        patientGroupService.removeById(id);
+        return ResponseEntity.ok().build();
+    }
 } 

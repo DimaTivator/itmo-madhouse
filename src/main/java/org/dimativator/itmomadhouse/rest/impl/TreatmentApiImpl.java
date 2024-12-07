@@ -20,15 +20,28 @@ public class TreatmentApiImpl implements TreatmentApi {
     }
 
     @Override
+    public ResponseEntity<TreatmentDto> getTreatment(Long id) {
+        return ResponseEntity.ok(treatmentService.getById(id));
+    }
+
+    @Override
+    public ResponseEntity<TreatmentDto> addTreatment(TreatmentDto treatmentDto) {
+        return ResponseEntity.ok(treatmentService.addTreatment(treatmentDto));
+    }
+
+    @Override
+    public ResponseEntity<TreatmentDto> updateTreatment(Long id, TreatmentDto treatmentDto) {
+        return ResponseEntity.ok(treatmentService.updateById(id, treatmentDto));
+    }
+
+    @Override
+    public ResponseEntity<Void> removeTreatment(Long id) {
+        treatmentService.removeById(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
     public ResponseEntity<Void> assignTherapy(AssignTherapyRequest request) {
-        System.out.println("------------------------------------------------------------------------------------------------------");
-        System.out.println("Assigning therapy to patient " + request.getPatientId());
-        System.out.println("Doctor ID: " + request.getDoctorId());
-        System.out.println("Artifact ID: " + request.getArtifactId());
-        System.out.println("Spell ID: " + request.getSpellId());
-        System.out.println("Creature ID: " + request.getCreatureId());
-        System.out.println("Treatment date: " + request.getTreatmentDate());
-        System.out.println("------------------------------------------------------------------------------------------------------");
         treatmentService.assignTherapy(request);
         return ResponseEntity.ok().build();
     }

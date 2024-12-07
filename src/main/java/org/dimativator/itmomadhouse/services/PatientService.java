@@ -17,4 +17,35 @@ public class PatientService {
             .map(PatientMapper::toDto)
             .toList();
     }
+
+    public PatientDto addPatient(PatientDto patientDto) {
+        return PatientMapper.toDto(
+            patientRepository.save(
+                PatientMapper.toEntity(patientDto)
+            )
+        );
+    }
+
+    public PatientDto updateById(Long id, PatientDto patientDto) {
+        if (!patientRepository.existsById(id)) {
+            throw new RuntimeException("Patient not found with id: " + id);
+        }
+        patientDto.setId(id);
+        return PatientMapper.toDto(
+            patientRepository.save(
+                PatientMapper.toEntity(patientDto)
+            )
+        );
+    }
+
+    public void removeById(Long id) {
+        patientRepository.deleteById(id);
+    }
+
+    public PatientDto getById(Long id) {
+        return PatientMapper.toDto(
+            patientRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Patient not found with id: " + id))
+        );
+    }
 } 

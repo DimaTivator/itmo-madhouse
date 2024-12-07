@@ -29,6 +29,22 @@ public class DischargeReportService {
             .toList();
     }
 
+    public DischargeReportDto updateById(Long id, DischargeReportDto reportDto) {
+        if (!dischargeReportRepository.existsById(id)) {
+            throw new RuntimeException("Discharge report not found with id: " + id);
+        }
+        reportDto.setId(id);
+        return DischargeReportMapper.toDto(
+            dischargeReportRepository.save(
+                DischargeReportMapper.toEntity(reportDto)
+            )
+        );
+    }
+
+    public void removeById(Long id) {
+        dischargeReportRepository.deleteById(id);
+    }
+
     @Transactional
     public void dischargePatient(DischargePatientRequest request) {
         entityManager.createNativeQuery(

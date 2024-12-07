@@ -18,4 +18,28 @@ public class ArtifactService {
             .map(ArtifactMapper::toDto)
             .toList();
     }
+
+    public ArtifactDto addArtifact(ArtifactDto artifactDto) {
+        return ArtifactMapper.toDto(
+            artifactRepository.save(
+                ArtifactMapper.toEntity(artifactDto)
+            )
+        );
+    }
+
+    public ArtifactDto updateById(Long id, ArtifactDto artifactDto) {
+        if (!artifactRepository.existsById(id)) {
+            throw new RuntimeException("Artifact not found with id: " + id);
+        }
+        artifactDto.setId(id);
+        return ArtifactMapper.toDto(
+            artifactRepository.save(
+                ArtifactMapper.toEntity(artifactDto)
+            )
+        );
+    }
+
+    public void removeById(Long id) {
+        artifactRepository.deleteById(id);
+    }
 }
