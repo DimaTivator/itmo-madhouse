@@ -9,14 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PatientDto {
+public class DischargeReportDto {
     private Long id;
-    private String name;
-    private java.time.LocalDate dateOfBirth;
+    private PatientDto patient;
     private DoctorDto doctor;
-    private DiseaseDto disease;
-    private PatientGroupDto patientGroup;
-    private UserDto user;
-
-    // private List<TreatmentDto> treatments;
-} 
+    private String report;
+}

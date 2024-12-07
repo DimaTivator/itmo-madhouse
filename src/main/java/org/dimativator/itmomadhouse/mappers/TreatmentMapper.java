@@ -12,7 +12,7 @@ public class TreatmentMapper {
                 .artifact(ArtifactMapper.toEntity(treatmentDto.getArtifact()))
                 .creature(CreatureMapper.toEntity(treatmentDto.getCreature()))
                 .spell(SpellMapper.toEntity(treatmentDto.getSpell()))
-                .date(treatmentDto.getDate())
+                .treatmentDate(treatmentDto.getTreatmentDate())
                 .build();
     }
 
@@ -24,7 +24,7 @@ public class TreatmentMapper {
                 .artifact(ArtifactMapper.toDto(treatment.getArtifact()))
                 .creature(CreatureMapper.toDto(treatment.getCreature()))
                 .spell(SpellMapper.toDto(treatment.getSpell()))
-                .date(treatment.getDate())
+                .treatmentDate(treatment.getTreatmentDate())
                 .build();
     }
 } 

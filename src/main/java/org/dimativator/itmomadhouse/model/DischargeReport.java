@@ -6,31 +6,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "cw_group_therapy")
-public class GroupTherapy {
+@Table(name = "cw_discharge_report")
+public class DischargeReport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
-    private PatientGroup patientGroup;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Artifact artifact;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Creature creature;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Spell spell;
 
-    @Column(name = "therapy_date")
-    private java.time.LocalDate therapyDate;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+
+    private String report;
 }

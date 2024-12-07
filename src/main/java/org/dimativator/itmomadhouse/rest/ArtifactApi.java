@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.dimativator.itmomadhouse.dto.ArtifactDto;
 import java.util.List;
 
-@RequestMapping("/api")
+@RequestMapping("/api")  
 public interface ArtifactApi {
     @GetMapping("/artifacts")
     ResponseEntity<List<ArtifactDto>> findAll();
