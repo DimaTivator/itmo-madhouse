@@ -22,19 +22,19 @@ public class Patient {
     
     @Column(nullable = false)
     private java.time.LocalDate dateOfBirth;
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = true)
     private Doctor doctor;
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = true)
     private Disease disease;
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = true)
     private PatientGroup patientGroup;
-    
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
     private User user;

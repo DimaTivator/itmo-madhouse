@@ -33,4 +33,9 @@ public class AppointmentApiImpl implements AppointmentApi {
     public ResponseEntity<AppointmentDto> updateAppointment(Long id, AppointmentDto appointmentDto) {
         return ResponseEntity.ok(appointmentService.updateById(id, appointmentDto));
     }
+
+    @Override
+    public ResponseEntity<List<AppointmentDto>> getAllAppointmentsByDoctorId(Long doctorId) {
+        return ResponseEntity.ok(appointmentService.getAllAppointmentsByDoctorId(doctorId));
+    }
 } 

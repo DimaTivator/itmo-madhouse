@@ -18,4 +18,7 @@ public interface AppointmentApi {
 
     @PutMapping("/appointment/{id}")
     ResponseEntity<AppointmentDto> updateAppointment(@PathVariable Long id, @RequestBody AppointmentDto appointmentDto);
+
+    @GetMapping("/appointments/doctor/{doctorId}")
+    ResponseEntity<List<AppointmentDto>> getAllAppointmentsByDoctorId(@PathVariable Long doctorId);
 } 
